@@ -1,0 +1,7 @@
+.idea/
+.DS_Store
+
+### NodeJS ###
+
+# Dependency directory
+node_modules

@@ -1,0 +1,22 @@
+{
+  "name": "webapps-node-and-express-course",
+  "version": "1.0.0",
+  "description": "course from pluralsight",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://josedeniz@github.com/JoseDeniz/WebApps-Node-and-express-course.git"
+  },
+  "author": "josedeniz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoseDeniz/WebApps-Node-and-express-course/issues"
+  },
+  "homepage": "https://github.com/JoseDeniz/WebApps-Node-and-express-course#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
