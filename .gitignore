@@ -5,3 +5,7 @@
 
 # Dependency directory
 node_modules
+
+### Bower ###
+
+/public/lib/
