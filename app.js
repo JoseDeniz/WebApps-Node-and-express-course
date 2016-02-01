@@ -7,8 +7,9 @@ var port = process.env.PORT || 5000;
 app.listen(port, (err) => console.log('running on port: ' + port));
 
 app.use(express.static('public'));
-app.use(express.static('src/views'));
+app.set('views', './src/views');
+app.set('view engine', 'jade');
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.render('index');
 });
