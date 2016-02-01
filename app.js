@@ -11,5 +11,5 @@ app.set('views', './src/views');
 app.set('view engine', 'jade');
 
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index', {list: ['a', 'b', 'c']});
 });
