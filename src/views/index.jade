@@ -1,5 +1,19 @@
 html
     head
+        //- bower:
+        script(src='/lib/jquery/dist/jquery.js')
+        script(src='/lib/bootstrap/dist/js/bootstrap.js')
+        //- endbower
+        //- bower:
+        script(src='/lib/jquery/dist/jquery.js')
+        script(src='/lib/bootstrap/dist/js/bootstrap.js')
+        //- endbower
+        //- inject:css
+        link(rel="stylesheet", href="/css/styles.css")
+        //- endinject
+        //- inject:js
+        script(src="/js/app.js")
+        //- endinject
         title MyApp
     body(class='myClass')
         h1(id='MyId') My App
