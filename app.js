@@ -15,5 +15,5 @@ app.engine('.hbs', handlebars({extname: '.hbs'}));
 app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => {
-    res.render('index', {list: ['a', 'b', 'c']});
+    res.render('index', {title: 'Hello from render', list: ['a', 'b', 'c']});
 });
