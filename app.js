@@ -12,8 +12,41 @@ app.set('views', './src/views');
 
 app.set('view engine', 'ejs');
 
+var books = [
+    {
+        title: 'War and Peace',
+        genre: 'Historical Fiction',
+        author: 'Tolstoy',
+        read: false
+    },
+    {
+        title: 'War and Peace',
+        genre: 'Historical Fiction',
+        author: 'Tolstoy',
+        read: false
+    },
+    {
+        title: 'War and Peace',
+        genre: 'Historical Fiction',
+        author: 'Tolstoy',
+        read: false
+    }
+];
 bookRouter.route('/')
-    .get((req, res) => res.send('Hello Books'));
+    .get((req, res) => res.render('books',
+        {
+            title: 'Books',
+            nav: [
+                {
+                    link: '/books',
+                    text: 'Books'
+                },
+                {
+                    link: '/authors',
+                    text: 'Authors'
+                }],
+            books: books
+        }));
 
 bookRouter.route('/single')
     .get((req, res) => res.send('Hello Single Book'));
@@ -24,15 +57,14 @@ app.get('/', (req, res) => {
     res.render('index',
         {
             title: 'Hello from render',
-            nav:
-                [{
-                    link: '/books',
-                    text: 'Books'
-                },
-                    {
-                        link: '/authors',
-                        text: 'Authors'
-                    }]
+            nav: [{
+                link: '/books',
+                text: 'Books'
+            },
+                {
+                    link: '/authors',
+                    text: 'Authors'
+                }]
         });
 });
 
