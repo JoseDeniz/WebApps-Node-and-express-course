@@ -12,5 +12,20 @@ app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    res.render('index', {title: 'Hello from render', list: ['a', 'b', 'c']});
+    res.render('index',
+        {
+            title: 'Hello from render',
+            nav:
+                [{
+                    link: '/books',
+                    text: 'Books'
+                },
+                    {
+                        link: '/authors',
+                        text: 'Authors'
+                    }]
+        });
 });
+
+app.get('/books', (req, res) => res.send('Hello Books'));
+app.get('/authors', (req, res) => res.send('Hello Authors'));
