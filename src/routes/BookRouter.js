@@ -22,7 +22,7 @@ var books = [
     }
 ];
 router.route('/')
-    .get((req, res) => res.render('books',
+    .get((req, res) => res.render('bookListView',
         {
             title: 'Books',
             nav: [
@@ -37,7 +37,23 @@ router.route('/')
             books: books
         }));
 
-router.route('/single')
-    .get((req, res) => res.send('Hello Single Book'));
+router.route('/:id')
+    .get((req, res) => {
+        var id = req.params.id;
+        res.render('bookView',
+            {
+                title: books[id].title,
+                nav: [
+                    {
+                        link: '/books',
+                        text: 'Books'
+                    },
+                    {
+                        link: '/authors',
+                        text: 'Authors'
+                    }],
+                book: books[id]
+            });
+    });
 
 module.exports = router;
