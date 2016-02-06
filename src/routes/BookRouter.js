@@ -1,35 +1,26 @@
 var express = require('express');
 var bookRouter = express.Router();
+var mongodb = require('mongodb').MongoClient;
 
 var router = (nav) => {
 
-    var books = [
-        {
-            title: '1 - War and Peace',
-            genre: 'Historical Fiction',
-            author: 'Tolstoy',
-            read: false
-        },
-        {
-            title: '2 - War and Peace',
-            genre: 'Historical Fiction',
-            author: 'Tolstoy',
-            read: false
-        },
-        {
-            title: '3 - War and Peace',
-            genre: 'Historical Fiction',
-            author: 'Tolstoy',
-            read: false
-        }
-    ];
     bookRouter.route('/')
-        .get((req, res) => res.render('bookListView',
-            {
-                title: 'Books',
-                nav: nav,
-                books: books
-            }));
+        .get((req, res) => {
+            var url = 'mongodb://localhost:27017/WebApps-Node-and-express-course';
+            var books;
+
+            mongodb.connect(url, (err, db) => {
+                var booksCollection = db.collection('books');
+                booksCollection.find({}).toArray((err, result) => {
+                    res.render('bookListView',
+                        {
+                            title: 'Books',
+                            nav: nav,
+                            books: result
+                        });
+                });
+            });
+        });
 
     bookRouter.route('/:id')
         .get((req, res) => {
