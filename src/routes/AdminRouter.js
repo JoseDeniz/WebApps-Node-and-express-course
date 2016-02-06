@@ -1,5 +1,27 @@
 var express = require('express');
 var adminRouter = express.Router();
+var mongodb = require('mongodb').MongoClient;
+
+var books = [
+        {
+            title: '1 - War and Peace',
+            genre: 'Historical Fiction',
+            author: 'Tolstoy',
+            read: false
+        },
+        {
+            title: '2 - War and Peace',
+            genre: 'Historical Fiction',
+            author: 'Tolstoy',
+            read: false
+        },
+        {
+            title: '3 - War and Peace',
+            genre: 'Historical Fiction',
+            author: 'Tolstoy',
+            read: false
+        }
+    ];
 
 var router = (nav) => {
 
@@ -8,7 +30,16 @@ var router = (nav) => {
 
     adminRouter.route('/addBooks')
         .get((req, res) => {
-            res.send('inserting books');
+            var url = 'mongodb://localhost:27017/WebApps-Node-and-express-course';
+
+            mongodb.connect(url, (err, db) => {
+                console.log('Connected correctly to server');
+                var booksCollection = db.collection('books');
+                booksCollection.insertMany(books, (err, results) => {
+                    res.send(results);
+                    db.close();
+                });
+            });
         });
 
     return adminRouter;
