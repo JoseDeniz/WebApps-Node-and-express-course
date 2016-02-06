@@ -13,6 +13,7 @@ var nav = [
         text: 'Author'
     }];
 var bookRouter = require('./src/routes/BookRouter')(nav);
+var adminRouter = require('./src/routes/AdminRouter')(nav);
 
 app.listen(port, (err) => console.log('running on port: ' + port));
 
@@ -22,6 +23,7 @@ app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
 app.use('/books', bookRouter);
+app.use('/admin', adminRouter);
 
 app.get('/', (req, res) => {
     res.render('index',
