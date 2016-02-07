@@ -5,7 +5,15 @@ var mongodb = require('mongodb').MongoClient;
 var router = function (nav) {
     authRouter.route('/signUp')
         .post((req, res) => {
-            console.log(req.body);
+            var user = req.body;
+            console.log(user);
+            req.login(user, () => {
+                res.redirect('/auth/profile');
+            });
+        });
+    authRouter.route('/profile')
+        .get((req, res) => {
+            res.json(req.user);
         });
     return authRouter;
 };
