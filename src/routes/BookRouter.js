@@ -7,6 +7,13 @@ var url = 'mongodb://localhost:27017/WebApps-Node-and-express-course';
 
 var router = (nav) => {
 
+    bookRouter.use((req, res, next) => {
+        if (!req.user) {
+            res.redirect('/');
+        }
+        next();
+    });
+
     bookRouter.route('/')
         .get((req, res) => {
             mongodb.connect(url, (err, db) => {
