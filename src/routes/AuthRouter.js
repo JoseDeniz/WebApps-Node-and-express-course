@@ -18,6 +18,7 @@ var router = function (nav) {
                 });
             });
         });
+
     authRouter.route('/signIn')
         .post(passport.authenticate('local',
             {
@@ -26,7 +27,14 @@ var router = function (nav) {
             (req, res) => {
                 res.redirect('/auth/profile');
             });
+
     authRouter.route('/profile')
+        .all((req, res, next) => {
+            if (!req.user) {
+                res.redirect('/');
+            }
+            next();
+        })
         .get((req, res) => {
             res.json(req.user);
         });
