@@ -7,8 +7,14 @@ var router = function (nav) {
         .post((req, res) => {
             var user = req.body;
             console.log(user);
-            req.login(user, () => {
-                res.redirect('/auth/profile');
+            var url = 'mongodb://localhost:27017/WebApps-Node-and-express-course';
+            mongodb.connect(url, (err, db) => {
+                var userCollection = db.collection('users');
+                userCollection.insertOne(user, (err, result) => {
+                    req.login(result.ops[0], () => {
+                        res.redirect('/auth/profile');
+                    });
+                });
             });
         });
     authRouter.route('/profile')
