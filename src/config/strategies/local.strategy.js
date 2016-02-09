@@ -3,7 +3,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 module.exports = () => {
     passport.use(new LocalStrategy({
-            usernameField: 'userName',
+            usernameField: 'username',
             passwordField: 'password'
         },
         (username, password, done) => {
