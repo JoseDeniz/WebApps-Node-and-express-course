@@ -34,16 +34,25 @@ var bookController = function (bookService, nav) {
                     _id: id
                 },
                 (err, result) => {
-                    bookService.getBookById(result.bookId,
-                        (err, book) => {
-                            result.book = book;
-                            res.render('bookView',
-                                {
-                                    title: 'Books',
-                                    nav: nav,
-                                    book: result
-                                });
-                        });
+                    if (result.bookId) {
+                        bookService.getBookById(result.bookId,
+                            (err, book) => {
+                                result.book = book;
+                                res.render('bookView',
+                                    {
+                                        title: 'Books',
+                                        nav: nav,
+                                        book: result
+                                    });
+                            });
+                    } else {
+                        res.render('bookView',
+                            {
+                                title: 'Books',
+                                nav: nav,
+                                book: result
+                            });
+                    }
                 });
         });
     };

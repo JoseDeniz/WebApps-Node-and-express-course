@@ -4,21 +4,17 @@ var mongodb = require('mongodb').MongoClient;
 
 var books = [
         {
-            title: '1 - War and Peace',
+            title: 'War and Peace',
             genre: 'Historical Fiction',
-            author: 'Tolstoy',
+            author: 'Lev Nikolayevich Tolstoy',
+            bookId: 656,
             read: false
         },
         {
-            title: '2 - War and Peace',
+            title: 'Les Misérables',
             genre: 'Historical Fiction',
-            author: 'Tolstoy',
-            read: false
-        },
-        {
-            title: '3 - War and Peace',
-            genre: 'Historical Fiction',
-            author: 'Tolstoy',
+            author: 'Victor Hugo',
+            bookId: 24280,
             read: false
         }
     ];
