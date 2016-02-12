@@ -7,7 +7,7 @@ var goodReadServices = () => {
     var getBookById = (id, cb) => {
         var options = {
             host: 'www.goodreads.com',
-            path: '/book/show/656?format=xml&key=xkc9mCKeWN4pKV2g5ui6g'
+            path: '/book/show/' + id + '?format=xml&key=xkc9mCKeWN4pKV2g5ui6g'
         };
         var callback = (response) => {
             var str = '';
@@ -15,7 +15,6 @@ var goodReadServices = () => {
                 str += chunk;
             });
             response.on('end', () => {
-                console.log(str);
                 parser.parseString(str, (err, result) => {
                     cb(null, result.GoodreadsResponse.book);
                 });
