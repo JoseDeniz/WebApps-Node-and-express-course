@@ -29,14 +29,22 @@ var bookController = function (bookService, nav) {
         var id = new objectId(req.params.id);
         mongoClient.connect(url, (err, db) => {
             var booksCollection = db.collection('books');
-            booksCollection.findOne({_id: id}, (err, result) => {
-                res.render('bookView',
-                    {
-                        title: 'Books',
-                        nav: nav,
-                        book: result
-                    });
-            });
+            booksCollection.findOne(
+                {
+                    _id: id
+                },
+                (err, result) => {
+                    bookService.getBookById(result.bookId,
+                        (err, book) => {
+                            result.book = book;
+                            res.render('bookView',
+                                {
+                                    title: 'Books',
+                                    nav: nav,
+                                    book: result
+                                });
+                        });
+                });
         });
     };
 
